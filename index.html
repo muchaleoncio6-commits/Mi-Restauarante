@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Piká - Taquería</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #f7f3e8;
+      color: #333333;
+    }
+
+    /* Header */
+    header {
+      background-color: #1a1a1a;
+      color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 50px;
+    }
+
+    .logo-header {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-header .title {
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .logo-header .subtitle {
+      font-size: 0.65rem;
+      color: #c9a35e;
+      letter-spacing: 1.5px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.85rem;
+    }
+
+    .btn-header {
+      background-color: #201b29;
+      color: #1a1a1a;
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    /* Cinta de colores */
+    .banner-pattern {
+      height: 8px;
+      background: linear-gradient(
+        to right,
+        #b02b2b 0% 5%, #fcfcfc 5% 10%, #d62e2e 10% 15%, #185a1d 15% 20%,
+        #f6f8f8 20% 25%, #9e1616 25% 30%, #e72323 30% 35%, #faf8f9 35% 40%,
+        #e72323 40% 45%, #185a1d 45% 50%, #f6f8f8 50% 55%, #9e1616 55% 60%,
+        #e72323 60% 65%, #f6f8f8 65% 70%, #e72323 70% 75%, #185a1d 75% 80%,
+        #f6f8f8 80% 85%, #9e1616 85% 90%, #e72323 90% 95%, #f6f8f8 95% 100%
+      );
+    }
+
+    /* Contenedores */
+    .section-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .section-tag {
+      font-size: 0.7rem;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      color: #8b1500;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    /* Hero */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 50px;
+      align-items: start;
+    }
+
+    .brand-section {
+      border-bottom: 1px solid #dcd7c9;
+      padding-bottom: 8px;
+      margin-bottom: 20px;
+      max-width: 380px;
+    }
+
+    .brand-logo-box {
+      border: 1.5px solid #81912c;
+
+      padding: 6px 14px;
+      display: inline-block;
+      text-align: center;
+      background: #ce9e1a;
+    }
+
+    .brand-logo-box h2 {
+      font-size: 1.6rem;
+      font-family: serif;
+      
+    }
+
+    .brand-logo-box p {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .address-tag {
+      font-size: 0.65rem;
+      letter-spacing: 1.5px;
+      color: #666;
+      margin-top: 12px;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      color: #124b1b;
+      font-size: 3.5rem;
+      line-height: 0.95;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #1a1a1a;
+      margin-bottom: 20px;
+    }
+
+    .description {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #4a4a4a;
+      margin-bottom: 30px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .btn-primary {
+      background-color: #900c0c;
+      color: #ffffff;
+      padding: 12px 24px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: #1a1a1a;
+      border: 1px solid #1a1a1a;
+      padding: 12px 24px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+
+    .rating {
+      font-size: 0.8rem;
+      color: #555;
+    }
+
+    .rating strong {
+      color: #8b0000;
+      font-size: 0.9rem;
+    }
+
+    /* Tarjetas derechas */
+    .cards-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .price-card-hero {
+      background-color: #900c0c;
+      color: #ffffff;
+      border-radius: 8px;
+      padding: 25px;
+      text-align: center;
+    }
+
+    .price-card-hero .label { font-size: 0.7rem; letter-spacing: 1.5px; }
+    .price-card-hero .price { font-size: 3rem; font-weight: 900; margin-bottom: 10px; }
+    .price-card-hero .details { font-size: 0.75rem; opacity: 0.9; }
+
+    .info-card {
+      background-color: #fff8f0;
+      border: 1px solid #eae0d0;
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .info-card h3 { color: #900c0c; font-size: 0.95rem; margin-bottom: 8px; }
+    .info-card p { font-size: 0.8rem; color: #555; line-height: 1.4; }
+
+    /* Menú */
+    .menu-header h2 {
+      font-size: 2.5rem;
+      color: #8b0000;
+      font-weight: 900;
+      margin-bottom: 15px;
+    }
+
+    .menu-intro {
+      font-size: 0.95rem;
+      color: #555;
+      max-width: 750px;
+      line-height: 1.5;
+      margin-bottom: 25px;
+    }
+
+    .stew-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 35px;
+    }
+
+    .pill {
+      background-color: #ffffff;
+      border: 1px solid #e8e2d5;
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .price-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .menu-card {
+      background: #ffffff;
+      padding: 25px 20px;
+      border-radius: 6px;
+    }
+
+    .menu-card .price {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: #8b0000;
+      margin-bottom: 10px;
+    }
+
+    .menu-card h4 {
+      font-size: 0.9rem;
+      color: #8b0000;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .menu-card p {
+      font-size: 0.78rem;
+      color: #666;
+    }
+
+    /* Galería */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .gallery-item {
+      background: #ffffff;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-item .caption {
+      padding: 12px 15px;
+      font-size: 0.75rem;
+      color: #666;
+    }
+    #footer {
+      background-color: #1a1a1a;
+      color: #ffffff;
+      text-align: center;
+      padding: 15px 0;
+      font-size: 0.8rem;
+    }
+
+    /* Adaptación a pantallas pequeñas */
+    @media (max-width: 800px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .price-grid, .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      header { padding: 12px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo-header">
+      <span class="title">Piká</span>
+      <span class="subtitle">De México para Perú</span>
+    </div>
+    <nav>
+      <a href="#">Menú</a>
+      <a href="#">Historia</a>
+      
+    </nav>
+  </header>
+
+  <div class="banner-pattern"></div>
+
+  <main class="section-container hero-grid">
+    <section>
+      <div class="brand-section">
+        <div class="brand-logo-box">
+          <h2>Píka</h2>
+          <p>Mexicana</p>
+        </div>
+        <p class="address-tag">Tatiana Angie</p>
+      </div>
+
+      <h1 class="hero-title">Tacos y<br>burritos</h1>
+      
+
+      <p class="description">
+        Porque los tacos deben verse realmente como tacos y saver a México.
+        Una fusión con el sabor de la comida Peruana pero con la originalidad de la comida Mexicana. Ven y prueba nuestros tacos, burritos y más.
+      </p>
+
+      <div class="cta-buttons">
+        <a href="#" class="btn-primary">Pedir en línea</a>
+        <a href="#" class="btn-secondary">Ver el menú</a>
+      </div>
+
+      <p class="rating">
+        <strong>4.7 ★</strong> más de 13,400 reseñas en nuestras páginas de redes sociales y Google.
+      </p>
+    </section>
+
+    <aside class="cards-wrapper">
+        
+      <div class="price-card-hero">
+        <div class="brand-logo-box">
+        <img src="pika imagen.PNG" alt="Logo PIKA">
+         </div>
+        
+        
+      </div>
+
+      <div class="info-card">
+        <h3>Pedidos</h3>
+        <p> <strong>PedidosYa</strong>, <strong>WhatsApp</strong> o <strong>Llamada: </strong>929547222.</p>
+      </div>
+    </aside>
+  </main>
+
+  <section class="section-container">
+    <div class="section-tag">♦ EL MENÚ</div>
+    <div class="menu-header">
+      <h2>Siete ingredientes un precio</h2>
+    </div>
+    <p class="menu-intro">
+      Todos los tacos cuentan con un sabor único: cuando se acaban, se acaban. En <strong>Fechas Especiales</strong> se suma un nuevo sabor para que disfrutes de la experiencia completa.
+    </p>
+
+    <div class="stew-pills">
+      <div class="pill">♦ Carnes</div>
+      <div class="pill">♦ Pollo</div>
+      <div class="pill">♦ Chancho</div>
+      <div class="pill">♦ Frijol </div>
+      <div class="pill">♦ Pico de Gallo</div>
+      <div class="pill">♦ Aguacate</div>
+      <div class="pill">♦ Queso</div>
+    </div>
+
+    <div class="price-grid">
+      <div class="menu-card">
+        <div class="price">S/.3.50</div>
+        <h4>Taco suelto</h4>
+        <p>Cualquier guiso.</p>
+      </div>
+      <div class="menu-card">
+        <div class="price">S/.39.00</div>
+        <h4>Orden de 6</h4>
+        <p>Combo con refresco: S/.51.00</p>
+      </div>
+      <div class="menu-card">
+        <div class="price">S/.120.00</div>
+        <h4>Veinte tacos</h4>
+        <p>Para llevar a la casa o a la oficina.</p>
+      </div>
+      <div class="menu-card">
+        <div class="price">S/.22.50</div>
+        <h4>Salsa La Comelona</h4>
+        <p>Salsa Picante <strong>(Solo Valientes)</strong></p>
+      </div>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-item">
+         Tacos Al Pastor
+        <img img src="Crockpot-Al-Pastor-12.jpg" alt="Tacos">
+        <div class="caption">El plato como llega: tacos, limón y aguacate.</div>
+        
+      </div>
+      <div class="gallery-item">
+        Tacos de Pollo
+        <img img src="Tacos de Pollo.jpeg" alt="Plato de barro">
+        <div class="caption">El taco de canasta en plato de barro, con la salsa de la casa.</div>
+      </div>
+      <div class="gallery-item">
+        Nachos con Queso y Carne
+        <img img src="nachos.jpeg" alt="Refresco y Tacos">
+        <div class="caption"> Nachos, carne molida, pico de gallo y queso blanco.</div>
+      </div>
+      <div class="gallery-item">
+        Burrito de Pollo
+        <img img src="burrito de pollo.jpg" alt="Charola">
+        <div class="caption">Burrito de Pollo.</div>
+      </div>
+      <div class="gallery-item">
+        Burrito Pollo y Chorizo
+        <img img src="pollo y chorizo.JPG" alt="Charola">
+        <div class="caption">Burrito de Pollo y Chorizo</div>
+    </div>
+  </section>
+  <hr>  
+  <footer id="footer">
+    Derechos reservados © 2026 Pika Restaurante
+  </footer>
+</body>
+</html>
